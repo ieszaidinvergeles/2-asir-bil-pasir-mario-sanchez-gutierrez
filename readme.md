@@ -1,4 +1,4 @@
-# 🚀 Plataforma Cloud-Native y Despliegue Continuo (GitOps)
+# Plataforma Cloud-Native y Despliegue Continuo (GitOps)
 
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![ArgoCD](https://img.shields.io/badge/argo_cd-%23F4653D.svg?style=for-the-badge&logo=argo&logoColor=white)
