@@ -4,12 +4,11 @@ const { Pool } = require('pg');
 const app = express();
 const port = 3000;
 
-// Aquí es donde el microservicio lee el SealedSecret de Kubernetes
 const pool = new Pool({
   user: 'postgres',
   host: process.env.DB_HOST || 'postgres-service',
   database: 'postgres',
-  password: process.env.POSTGRES_PASSWORD, // Inyectado por tu caja fuerte
+  password: process.env.POSTGRES_PASSWORD, 
   port: 5432,
 });
 
