@@ -15,7 +15,7 @@ kind: Deployment
 metadata:
   name: postgres
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: postgres
@@ -31,10 +31,10 @@ spec:
             - name: POSTGRES_USER
               value: "admin"
             - name: POSTGRES_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: db-credentials
-                key: postgres-password
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: postgres-password
           ports:
             - containerPort: 5432
           volumeMounts:
