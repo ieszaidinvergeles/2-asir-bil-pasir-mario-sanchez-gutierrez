@@ -15,16 +15,16 @@ El núcleo del clúster y el sistema de despliegue continuo están operativos.
 
 ## FASE 2: Enrutamiento y Exposición (En Progreso)
 Transición de túneles locales (`port-forward`) a resolución de nombres de dominio reales.
-- [ ] **[BLOCKED]** Habilitar NGINX Ingress Controller en el clúster.
-- [ ] Declarar reglas de `Ingress` para enrutar tráfico HTTP hacia el Frontend.
-- [ ] Configurar resolución DNS local (`/etc/hosts`) apuntando a la IP de Minikube.
+- [x] **[BLOCKED]** Habilitar NGINX Ingress Controller en el clúster.
+- [x] Declarar reglas de `Ingress` para enrutar tráfico HTTP hacia el Frontend.
+- [x] Configurar resolución DNS local (`/etc/hosts`) apuntando a la IP de Minikube.
 
 ## FASE 3: Criptografía y Seguridad Operativa (Pendiente)
 Implementación de Zero-Trust y gestión de credenciales seguras.
-- [ ] Instalar controlador de Bitnami Sealed Secrets vía GitOps.
-- [ ] Generar par de claves asimétricas en el clúster.
-- [ ] Encriptar credenciales en texto plano de PostgreSQL (`kubeseal`) y migrar a `SealedSecret`.
-- [ ] Implementar Network Policies: Aislar base de datos para aceptar tráfico solo desde el backend.
+- [x] Instalar controlador de Bitnami Sealed Secrets vía GitOps.
+- [x] Generar par de claves asimétricas en el clúster.
+- [x] Encriptar credenciales en texto plano de PostgreSQL (`kubeseal`) y migrar a `SealedSecret`.
+- [] Implementar Network Policies: Aislar base de datos para aceptar tráfico solo desde el backend.
 
 ## FASE 4: Flujo CI/CD y Cargas de Trabajo (Pendiente)
 Desarrollo de la API lógica y automatización de la integración continua.
