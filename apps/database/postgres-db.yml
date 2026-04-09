@@ -28,8 +28,6 @@ spec:
         - name: postgres
           image: postgres:15
           env:
-            - name: POSTGRES_USER
-              value: "admin"
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
