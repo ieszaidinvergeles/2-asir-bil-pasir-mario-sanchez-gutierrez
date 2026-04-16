@@ -14,7 +14,7 @@ spec:
       paths:
       # Ruta para el Backend API
       - path: /api(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: backend-service
@@ -22,7 +22,7 @@ spec:
               number: 3000
       # Ruta para el Frontend (debe ir al final como catch-all)
       - path: /()(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: nginx-service 
