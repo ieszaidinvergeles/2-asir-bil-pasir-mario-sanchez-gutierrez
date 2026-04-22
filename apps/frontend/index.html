@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudOps Consulting</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1>CloudOps Consulting</h1>
+            <p>Infraestructura GitOps Zero-Trust para empresas</p>
+        </div>
+    </header>
+
+    <main class="container main-grid">
+        <div class="info-section">
+            <h2>Automatiza tu despliegue</h2>
+            <p>Modernizamos tu infraestructura con contenedores gestionados por Kubernetes y ArgoCD. Entornos efímeros, seguros y auto-reparables.</p>
+            <ul class="feature-list">
+                <li>✓ Criptografía asimétrica</li>
+                <li>✓ Políticas de red Zero-Trust</li>
+                <li>✓ Integración Continua (CI/CD)</li>
+            </ul>
+        </div>
+
+        <div class="form-box">
+            <h3>Solicitar Auditoría</h3>
+            <form id="leadForm" class="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Corporativo</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" id="empresa" name="empresa" required>
+                </div>
+                
+                <button type="submit" id="btnSubmit" class="btn-primary">Solicitar Propuesta</button>
+            </form>
+            
+            <div id="mensaje" class="alert hidden"></div>
+        </div>
+    </main>
+
+</body>
+</html>

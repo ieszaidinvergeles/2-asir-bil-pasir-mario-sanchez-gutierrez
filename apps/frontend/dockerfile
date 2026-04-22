@@ -1,0 +1,13 @@
+FROM nginx:alpine
+
+# Borramos la página por defecto de Nginx
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copiamos nuestra estructura completa (index.html, css/, js/) a la ruta pública
+COPY . /usr/share/nginx/html/
+
+# Exponemos el puerto 80 del contenedor
+EXPOSE 80
+
+# Arrancamos Nginx
+CMD ["nginx", "-g", "daemon off;"] 
