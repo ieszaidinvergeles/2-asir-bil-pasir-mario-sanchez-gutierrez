@@ -8,11 +8,11 @@ const port = 3000;
 app.use(express.json()); 
 
 const pool = new Pool({
-  user: 'postgres',
+  user: process.env.DB_USER || 'postgres',
   host: process.env.DB_HOST || 'postgres-service',
-  database: 'postgres',
-  password: process.env.POSTGRES_PASSWORD, 
-  port: 5432,
+  database: process.env.DB_NAME || 'tfg',
+  password: process.env.DB_PASSWORD, // <-- Este es el único que vendrá de tu SealedSecret
+  port: process.env.DB_PORT || 5432,
 });
 
 // Ruta de estado 1
