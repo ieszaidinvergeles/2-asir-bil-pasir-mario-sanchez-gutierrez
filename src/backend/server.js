@@ -11,7 +11,7 @@ const pool = new Pool({
   user: process.env.DB_USER || 'postgres',
   host: process.env.DB_HOST || 'postgres-service',
   database: process.env.DB_NAME || 'tfg',
-  password: process.env.DB_PASSWORD, // <-- Este es el único que vendrá de tu SealedSecret
+  password: process.env.DB_PASSWORD, 
   port: process.env.DB_PORT || 5432,
 });
 
