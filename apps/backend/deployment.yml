@@ -16,6 +16,7 @@ spec:
       containers:
       - name: api
         image: ghcr.io/ieszaidinvergeles/tfg-backend-api:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
