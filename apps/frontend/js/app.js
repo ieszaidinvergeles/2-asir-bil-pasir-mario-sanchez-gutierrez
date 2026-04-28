@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Éxito
             mensajeBox.classList.add('success');
-            mensajeBox.innerText = 'Propuesta solicitada con éxito. Revisaremos tu infraestructura.';
+            mensajeBox.innerText = '¡Solicitud enviada con éxito! Nuestro equipo analizará su infraestructura y nos pondremos en contacto a la mayor brevedad.';
             mensajeBox.classList.remove('hidden');
             form.reset();
 
