@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/ieszaidinvergeles/tfg-frontend:latest
+        image: ghcr.io/ieszaidinvergeles/tfg-frontend:403713475c45eb3e723b6890058b87314c28bfea
         imagePullPolicy: Always
         ports:
         - containerPort: 80
