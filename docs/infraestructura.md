@@ -103,6 +103,7 @@ NGINX Ingress Controller  (único punto de entrada, HTTPS forzado)
 │   │   ├── backend.yml          # ArgoCD app → apps/backend/
 │   │   ├── database.yml         # ArgoCD app → apps/database/
 │   │   ├── fronted.yml          # ArgoCD app → apps/frontend/
+│   │   ├── monitoring.yml        # ArgoCD app → kube-prometheus-stack (Helm)
 │   │   ├── ingresses-app.yml    # ArgoCD app → infra/ingresses/
 │   │   ├── sealed-secrets-app.yml    # ArgoCD app → SealedSecrets (Helm)
 │   │   └── tls-certs-app.yml    # ArgoCD app → infra/tls-certs/
