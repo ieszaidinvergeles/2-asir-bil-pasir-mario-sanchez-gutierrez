@@ -5,8 +5,13 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - pgadmin.tfg-plataforma.test
+    secretName: pgadmin-tls
   rules:
   - host: pgadmin.tfg-plataforma.test
     http:

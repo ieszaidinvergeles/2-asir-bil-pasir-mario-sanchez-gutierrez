@@ -8,8 +8,13 @@ metadata:
     # para que el NGINX Ingress Controller se comunique correctamente con el backend.
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - argocd.tfg-plataforma.test
+    secretName: argocd-tls
   rules:
   - host: argocd.tfg-plataforma.test
     http:

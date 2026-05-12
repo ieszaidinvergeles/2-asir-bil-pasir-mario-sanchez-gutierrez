@@ -5,8 +5,13 @@ metadata:
   namespace: monitoring
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - grafana.tfg-plataforma.test
+    secretName: grafana-tls
   rules:
   - host: grafana.tfg-plataforma.test
     http:
