@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
-      contents: read
+      contents: write
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -37,5 +37,19 @@ jobs:
       with:
         context: ./apps/frontend
         push: true
-        tags: ghcr.io/${{ github.repository_owner }}/tfg-frontend:latest
+        tags: |
+          ghcr.io/${{ github.repository_owner }}/tfg-frontend:latest
+          ghcr.io/${{ github.repository_owner }}/tfg-frontend:${{ github.sha }}
         platforms: linux/amd64,linux/arm64
+
+    - name: Update image tag in manifest
+      run: |
+        sed -i "s|ghcr.io/ieszaidinvergeles/tfg-frontend:.*|ghcr.io/ieszaidinvergeles/tfg-frontend:${{ github.sha }}|" apps/frontend/frontend.yml
+
+    - name: Commit and push updated manifest
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add apps/frontend/frontend.yml
+        git diff --cached --quiet || git commit -m "ci: update frontend image to ${{ github.sha }}"
+        git push
