@@ -1,23 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager-config
+  name: tls-certs
   namespace: argocd
-  annotations:
-    # Se sincroniza después de cert-manager para que los CRDs ya existan
-    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
     repoURL: 'https://github.com/ieszaidinvergeles/2-asir-bil-pasir-mario-sanchez-gutierrez.git'
     targetRevision: HEAD
-    path: infra/cert-manager
+    path: infra/tls-certs
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: cert-manager
+    namespace: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
