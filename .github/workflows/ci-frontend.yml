@@ -42,14 +42,13 @@ jobs:
           ghcr.io/${{ github.repository_owner }}/tfg-frontend:${{ github.sha }}
         platforms: linux/amd64,linux/arm64
 
-    - name: Update image tag in manifest
-      run: |
-        sed -i "s|ghcr.io/ieszaidinvergeles/tfg-frontend:.*|ghcr.io/ieszaidinvergeles/tfg-frontend:${{ github.sha }}|" apps/frontend/frontend.yml
-
-    - name: Commit and push updated manifest
+    - name: Update manifest on gitops branch
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
+        git fetch origin gitops 2>/dev/null || true
+        git checkout -B gitops origin/gitops 2>/dev/null || git checkout -b gitops
+        sed -i "s|ghcr.io/ieszaidinvergeles/tfg-frontend:.*|ghcr.io/ieszaidinvergeles/tfg-frontend:${{ github.sha }}|" apps/frontend/frontend.yml
         git add apps/frontend/frontend.yml
         git diff --cached --quiet || git commit -m "ci: update frontend image to ${{ github.sha }}"
-        git push
+        git push origin gitops
