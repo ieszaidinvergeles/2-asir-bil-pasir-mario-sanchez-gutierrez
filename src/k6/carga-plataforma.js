@@ -48,8 +48,8 @@ export default function () {
     tags: { name: 'api-leads' },
   });
   check(resApi, {
-    'api /leads OK (201)':    (r) => r.status === 201,
-    'respuesta tiene id':     (r) => JSON.parse(r.body || '{}').id !== undefined,
+    'api /leads OK (201)':      (r) => r.status === 201,
+    'respuesta tiene message':  (r) => JSON.parse(r.body || '{}').message !== undefined,
   });
   errorRate.add(resApi.status >= 400);
   duracionPeticion.add(resApi.timings.duration, { endpoint: 'api-leads' });
