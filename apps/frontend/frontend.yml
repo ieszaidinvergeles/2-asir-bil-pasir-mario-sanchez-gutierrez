@@ -26,7 +26,6 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
-  type: NodePort
   selector:
     app: frontend
   ports:
