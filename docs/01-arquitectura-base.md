@@ -70,7 +70,7 @@ Se ha superado la limitación de los servicios `NodePort` implementando un contr
 
 ## 8. Arquitectura de Seguridad y Confianza Cero (Zero-Trust)
 
-Para evitar la exposición de credenciales y la vulnerabilidad de red interna, se ha implementado un modelo de seguridad por capas.
+Para evitar la exposición de credenciales en el repositorio, se ha implementado un modelo de gestión segura de secretos basado en criptografía asimétrica.
 
 ### 8.1 Criptografía Asimétrica (GitOps Seguro)
 
@@ -79,13 +79,6 @@ La inyección de secretos en texto plano en repositorios de Git es un antipatró
 * **Despliegue Helm:** Inyección automatizada del controlador mediante ArgoCD utilizando el empaquetador Helm, apuntando al repositorio nativo de Bitnami y fijando una versión estable moderna.
 * **Cifrado Offline:** Utilización del CLI `kubeseal` para encriptar la contraseña de PostgreSQL con la clave pública del clúster directamente en la máquina del desarrollador.
 * **Inyección Dinámica:** El manifiesto `SealedSecret` encriptado reside de forma segura en GitHub. Al ser sincronizado por ArgoCD, el controlador lo descifra en memoria RAM y lo inyecta dinámicamente como variable de entorno en el Pod de PostgreSQL.
-
-### 8.2 Cortafuegos Interno (Network Policies)
-
-Se ha eliminado la topología de red plana por defecto de Kubernetes para aislar la capa de persistencia.
-
-* **Aislamiento a Nivel de Kernel:** Despliegue de una `NetworkPolicy` que bloquea todo el tráfico de entrada hacia los pods etiquetados como `app: postgres`.
-* **Lista Blanca Estricta:** La base de datos solo permite conexiones TCP en el puerto 5432 si el tráfico proviene exclusivamente de un pod con la etiqueta `app: backend-api`, implementando una verdadera política de privilegios mínimos.
 
 ## 9. Cadena de Suministro e Integración Continua (CI)
 

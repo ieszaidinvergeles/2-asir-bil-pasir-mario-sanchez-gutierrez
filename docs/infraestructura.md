@@ -88,8 +88,7 @@ NGINX Ingress Controller  (único punto de entrada, HTTPS forzado)
 │   │   ├── postgres-db.yml      # Deployment + Service + PVC de PostgreSQL
 │   │   ├── postgres-sealed-secret.yaml  # Credenciales de PostgreSQL (cifradas)
 │   │   ├── pgadmin.yml          # Deployment + Service de pgAdmin
-│   │   ├── pgadmin-sealed-secret.yaml   # Credenciales de pgAdmin (cifradas)
-│   │   └── network-policy.yml   # NetworkPolicy: solo el backend accede a PostgreSQL
+│   │   └── pgadmin-sealed-secret.yaml   # Credenciales de pgAdmin (cifradas)
 │   └── frontend/
 │       ├── frontend.yml         # Deployment + Service del frontend (3 réplicas)
 │       ├── dockerfile           # Imagen Docker del frontend

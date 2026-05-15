@@ -25,7 +25,6 @@ Implementación de Zero-Trust y gestión de credenciales seguras.
 - [x] Instalar controlador de Bitnami Sealed Secrets vía GitOps.
 - [x] Generar par de claves asimétricas en el clúster.
 - [x] Encriptar credenciales en texto plano de PostgreSQL (`kubeseal`) y migrar a `SealedSecret`.
-- [ ] Implementar Network Policies: Aislar base de datos para aceptar tráfico solo desde el backend.
 
 ## FASE 4: Flujo CI/CD y Cargas de Trabajo (Pendiente)
 Desarrollo de la API lógica y automatización de la integración continua.

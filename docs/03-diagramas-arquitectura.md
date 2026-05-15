@@ -94,7 +94,6 @@ flowchart TB
             BACKEND["Backend - Node.js + Express<br/>API REST - /api/leads"]:::service
             PGADMIN["pgAdmin 4<br/>Administracion de base de datos"]:::service
             POSTGRES[("PostgreSQL 15<br/>Persistencia - PVC 1Gi")]:::database
-            NETPOL{{"NetworkPolicy<br/>Aislamiento de la base de datos"}}:::security
         end
 
         %% --- Capa de observabilidad ---
@@ -125,9 +124,8 @@ flowchart TB
     INGRESS -->|"argocd.tfg-plataforma.test"| ARGOCD
 
     %% --- Acceso a datos ---
-    BACKEND -->|"TCP 5432 - permitido"| POSTGRES
-    NETPOL -.->|"solo admite app=backend-api"| POSTGRES
-    PGADMIN -.->|"TCP 5432 - restringido por NetworkPolicy"| POSTGRES
+    BACKEND -->|"TCP 5432"| POSTGRES
+    PGADMIN -->|"TCP 5432"| POSTGRES
 
     %% --- Gestion de secretos (criptografia asimetrica) ---
     SEALED -.->|"Secret: db-credentials"| POSTGRES
@@ -161,9 +159,8 @@ flowchart TB
 **Lectura del diagrama.** Todo el tráfico externo entra por el **NGINX Ingress Controller**
 (namespace `ingress-nginx`), que termina TLS y enruta a nivel 7 según el host. El namespace
 `default` contiene la aplicación (frontend, backend, pgAdmin) y la persistencia (PostgreSQL
-con PVC), protegida por una `NetworkPolicy` que solo admite tráfico del backend. El
-**Sealed Secrets Controller** (namespace `kube-system`) descifra los secretos sellados y
-genera los `Secret` nativos consumidos por las cargas de trabajo y por el Ingress
+con PVC). El **Sealed Secrets Controller** (namespace `kube-system`) descifra los secretos
+sellados y genera los `Secret` nativos consumidos por las cargas de trabajo y por el Ingress
 (certificados TLS). La observabilidad reside en `monitoring` (Prometheus, Grafana,
 Alertmanager) y Argo CD en su propio namespace `argocd`.
 
@@ -177,14 +174,6 @@ Alertmanager) y Argo CD en su propio namespace `argocd`.
 | Azul suave | Servicios y aplicaciones |
 | Gris neutro | Bases de datos y almacenamiento |
 | Gris frío | Observabilidad |
-| Gris cálido | Seguridad (secretos, NetworkPolicy) |
+| Gris cálido | Seguridad (secretos sellados) |
 
 ---
-
-## Nota sobre pgAdmin y la NetworkPolicy
-
-La `NetworkPolicy` `db-isolation-policy` solo permite conexiones a PostgreSQL desde pods con
-la etiqueta `app: backend-api`. Como pgAdmin se despliega con la etiqueta `app: pgadmin`, con
-la política actual **no podría conectarse a la base de datos**. En el diagrama esta relación
-se representa con línea discontinua. Para que pgAdmin funcione habría que añadir su etiqueta a
-la lista blanca de la `NetworkPolicy`.
